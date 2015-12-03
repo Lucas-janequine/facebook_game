@@ -19,12 +19,12 @@
 		<iframe id="iframe" class="iframe" src=""></iframe>
 		<!-- lobby inicia -->
 		<div id="lobby-layer" class="hide">
-			<a id="juego2" onclick="javascript:golobby('shb');" class="thumbs"><img src="../imgs/thumbs/superhot.jpg"><br>Super Hot Bingo</a>
-			<a id="juego4" onclick="javascript:golobby('zb');" class="thumbs"><img src="../imgs/thumbs/zodiac.jpg"><br>Zodiac Bingo</a>
-			<a id="juego5" onclick="javascript:golobby('pb');" class="thumbs"><img src="../imgs/thumbs/piratas.jpg"><br>Pirates Bingo</a>
-			<a id="juego3" onclick="javascript:golobby('sbp');" class="thumbs"><img src="../imgs/thumbs/showball.jpg"><br>Show Ball +</a>
-			<a id="juego1" onclick="javascript:golobby('farm');" class="thumbs"><img src="../imgs/thumbs/farm.jpg"><br>Fazenda Bingo</a>
-			<a id="juego6" onclick="javascript:golobby('gb');" class="thumbs"><img src="../imgs/thumbs/gol.jpg"><br>Gol Bingo</a>
+			<a id="juego2" onclick="javascript:golobby('shb');" class="thumbs"><img src="Images/thumbs/superhot.jpg"><br>Super Hot Bingo</a>
+			<a id="juego4" onclick="javascript:golobby('zb');" class="thumbs"><img src="Images/thumbs/zodiac.jpg"><br>Zodiac Bingo</a>
+			<a id="juego5" onclick="javascript:golobby('pb');" class="thumbs"><img src="Images/thumbs/piratas.jpg"><br>Pirates Bingo</a>
+			<a id="juego3" onclick="javascript:golobby('sbp');" class="thumbs"><img src="Images/thumbs/showball.jpg"><br>Show Ball +</a>
+			<a id="juego1" onclick="javascript:golobby('farm');" class="thumbs"><img src="Images/thumbs/farm.jpg"><br>Fazenda Bingo</a>
+			<a id="juego6" onclick="javascript:golobby('gb');" class="thumbs"><img src="Images/thumbs/gol.jpg"><br>Gol Bingo</a>
 		</div>
 		<div class="menu">
 			<!-- arranca idioma -->
