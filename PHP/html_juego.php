@@ -3,7 +3,7 @@
 			<form id="newsletter-signup" action="?action=signup" method="post">
 			    <fieldset>
 			    	<a class="close" onclick="javascript:closeNews();" ></a>
-			    	<img src="Images/newsletter.jpg">
+			    	<img src="Images/newsletter/newsletter.jpg">
 			        <br><br><label for="signup-email" id="txt-newsletter">Subscrir al Newsletter:</label>
 			        <br><br><label id="txt-newsletter2">E-mail:</label>
 			        <input type="text" name="signup-email" id="signup-email" />

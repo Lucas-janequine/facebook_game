@@ -18,7 +18,7 @@ $( document ).ready(function() {
   FB.Event.subscribe('auth.statusChange', onStatusChange);
 
 
-	$('body').css('background-image', "url(../imgs/background/"+ juego +".jpg)");
+	$('body').css('background-image', "url(Images/background/"+ juego +".jpg)");
 	$('#iframe').attr('src',url + idioma);
 
 	setTimeout(function () {
@@ -178,7 +178,7 @@ $(document).ready(function(){
 			}
 
 			function golobby(param){
-				$('body').css('background-image', "url(../imgs/background/"+ param +".jpg)");
+				$('body').css('background-image', "url(Images/background/"+ param +".jpg)");
 				if (param == "lobby"){
 					$('#iframe').attr('src','../lobby.php');
 					$('#iframe').removeClass().addClass('hide');
