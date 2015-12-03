@@ -180,7 +180,7 @@ $(document).ready(function(){
 			function golobby(param){
 				$('body').css('background-image', "url(Images/background/"+ param +".jpg)");
 				if (param == "lobby"){
-					$('#iframe').attr('src','../lobby.php');
+					$('#iframe').attr('src','PHP/lobby.php');
 					$('#iframe').removeClass().addClass('hide');
 					$('#lobby-layer').removeClass().addClass('visible');
 				} else{
