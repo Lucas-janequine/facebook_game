@@ -1,5 +1,5 @@
-var appId = '923504714405527';
-var appNamespace = 'friendsmashsample';
+var appId = '151693365176078';
+var appNamespace = 'show-ball-plus';
 var appCenterURL = '//www.facebook.com/appcenter/' + appNamespace;
 
 var friendCache = {
