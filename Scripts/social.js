@@ -1,3 +1,5 @@
+
+
 var appId = '151693365176078';
 var appNamespace = 'show-ball-plus';
 var appCenterURL = '//www.facebook.com/appcenter/' + appNamespace;
@@ -132,7 +134,7 @@ function loginCallback(response) {
 }
 
 function login(callback) {
-  FB.login(callback, {scope: 'user_friends,publish_actions,email', return_scopes: true});
+  FB.login(callback, {scope: 'user_friends,email', return_scopes: true});
 }
 
 function reRequest(scope, callback) {
@@ -177,56 +179,9 @@ function sendChallenge(to, message, callback, turn) {
   });
 }
 
-function sendBrag(caption, callback) {
-  FB.ui({ method: 'feed',
-    caption: caption,
-    picture: 'http://www.friendsmash.com/images/logo_large.jpg',
-    name: 'Checkout my Friend Smash greatness!'
-  }, callback);
-}
 
-function publishOGSmashAction(params, callback) {
-  // Can we publish via the API?
-  if( !hasPermission('publish_actions') ) {
-    // Have we asked the player for publish_actions already this game?
-    if( !friendCache.reRequests['publish_actions'] ) {
-      // Ask for the permission
-      reRequest('publish_actions', function(response) {
-        // Check permission was granted, recurse the method
-        friendCache.reRequests['publish_actions'] = true;
-        getPermissions(function() {
-          publishOGSmashAction(params);
-        });
-      });
-    } else {
-      // They said no to publish_actions, use the dialog
-      FB.ui({
-        method: 'share_open_graph',
-        action_type: 'friendsmashsample:smash',
-        action_properties: {
-          profile: params.profile,
-          score: params.score,
-          coins: params.coins
-        }
-      }, function(response){
-        console.log('share_open_graph', response);
-        if(callback) callback(response);
-      });
-    }
-  } else {
-    // We can publish via the API
-    FB.api('/me/friendsmashsample:smash', 'post', {
-      profile: params.profile,
-      score: params.score,
-      coins: params.coins,
-      message: params.message,
-      'fb:explicitly_shared': true
-    }, function(response) {
-      console.log('Open graph action via API', response);
-      if(callback) callback(response);
-    });
-  }
-}
+
+
 
 function sendScore(score, callback) {
   // Check current score, post new one only if it's higher
