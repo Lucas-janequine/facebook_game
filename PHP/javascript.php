@@ -4,7 +4,7 @@
 $( document ).ready(function() {
 
   FB.init({
-    appId: 923504714405527,
+    appId: 151693365176078,
     frictionlessRequests: true,
     status: true,
     version: 'v2.3'
