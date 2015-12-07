@@ -1,9 +1,9 @@
 // define la url del juego inicio
-define ([
+require ([
 	'jquery',
 	'social'
 	], function ($,social){
-		var juego = farm;
+
 		
 		var url="https://"+ juego +".patagoniaentertainment.com/game.do?type=FREE&pn=free&lang="
 		var idioma = 'br';
@@ -22,8 +22,8 @@ define ([
 			FB.Canvas.setDoneLoading();
 			FB.Canvas.setUrlHandler( urlHandler );
 
-			FB.Event.subscribe('auth.authResponseChange', onAuthResponseChange);
-			FB.Event.subscribe('auth.statusChange', onStatusChange);
+			FB.Event.subscribe('auth.authResponseChange', social.onAuthResponseChange ());
+			FB.Event.subscribe('auth.statusChange', social.onStatusChange ());
 
 
 			$('body').css('background-image', "url(Images/background/"+ juego +".jpg)");
@@ -122,7 +122,6 @@ $('#iframe').attr('src',url + 'br');
 });
 function Cambiaridioma(cual) {
 	idioma = cual;
-	console.log ("hehrherhehrherhherh");
 	if (cual == 'es'){
 		$('#idioma1').removeClass().addClass('actual flag es');
 		$('#idioma2').removeClass().addClass('cambio1 flag en');

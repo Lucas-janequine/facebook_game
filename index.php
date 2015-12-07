@@ -8,11 +8,10 @@ include("PHP/analytics.php");
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel='stylesheet' href='Styles/styles.css' type='text/css' media='all' />
 <script src="//connect.facebook.net/en_US/sdk.js"></script>
-<script src="Scripts/javascript.js"></script>
+
 
 <script data-main="scripts/main" src="scripts/require.js"></script>
 
-<script type="text/javascript" src="Scripts/social.js"></script>
 <!-- We will get our jQuery from google -->
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
 <script type="text/javascript">
@@ -27,7 +26,7 @@ include("PHP/analytics.php");
 
 var juego="farm";
 
-<?php include("PHP/javascript.php");?>
+
 </script>
 <!-- ////////////////////////////////
 ////VARIABLES A DEFINIR - FINAL////////
