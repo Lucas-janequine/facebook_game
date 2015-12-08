@@ -1,7 +1,8 @@
-  require ([
-    "jquery"
+  define ([
+    "jquery",
+    "ui"
     
-    ], function ($){
+    ], function ($,ui){
       var social =  {
       /*  var appId = '151693365176078';
         var appNamespace = 'show-ball-plus';
@@ -20,6 +21,7 @@
         },
 
       getFriendCacheData:  function (endpoint, callback, options) {
+        var model = this;
           if(endpoint) {
             var url = '/';
             if(endpoint == 'me') {
@@ -32,19 +34,19 @@
             FB.api(url, options, function(response) {
               if( !response.error ) {
                 console.log('getFriendCacheData',endpoint, response);
-                SetEmail (response.email,response.name);
-                friendCache[endpoint] = response.data ? response.data : response;
+                model.SetEmail (response.email,response.name);
+                model.friendCache[endpoint] = response.data ? response.data : response;
                 if(callback) callback();
               } else {
                 console.error('getFriendCacheData',endpoint, response)
               }
             });
           } else {
-            getMe(function() {
-              getPermissions(function() {
-                getFriends(function() {
-                  getInvitableFriends(function() {
-                    getScores(callback);
+            this.getMe(function() {
+              this.getPermissions(function() {
+                this.getFriends(function() {
+                  this.getInvitableFriends(function() {
+                    this.getScores(callback);
                   });
                 });
               });
@@ -64,26 +66,36 @@
          }
 
        },
+       // define la url del juego final
+ urlHandler : function(data) {
+  // Called from either setUrlHandler or using window.location on load, so normalise the path
+  var path = data.path || data;
+
+
+  var request_ids = getParameterByName(path, 'request_ids');
+  var latest_request_id = request_ids.split(',')[0];
+
+},
 
       getMe : function (callback) {
   //  window.location.href = "facebook_emails.php?w1=" + "dsad" + "&w2=" + "dasdsad";
-  getFriendCacheData('me', callback, {fields: 'id,name,first_name,picture.width(120).height(120),email'});
+  this.getFriendCacheData('me', callback, {fields: 'id,name,first_name,picture.width(120).height(120),email'});
   },
 
  getPermissions :function (callback) {
-    getFriendCacheData('permissions', callback);
+    this.getFriendCacheData('permissions', callback);
   },
 
   getFriends :function (callback) {
-    getFriendCacheData('friends', callback, {fields: 'id,name,first_name,picture.width(120).height(120)',limit: 8});
+    this.getFriendCacheData('friends', callback, {fields: 'id,name,first_name,picture.width(120).height(120)',limit: 8});
   },
 
   getInvitableFriends : function (callback) {
-    getFriendCacheData('invitable_friends', callback, {fields: 'name,first_name,picture',limit: 8});
+    this.getFriendCacheData('invitable_friends', callback, {fields: 'name,first_name,picture',limit: 8});
   },
 
  getScores : function (callback) {
-    getFriendCacheData('scores', callback, {fields: 'score,user.fields(first_name,name,picture.width(120).height(120))'});
+    this.getFriendCacheData('scores', callback, {fields: 'score,user.fields(first_name,name,picture.width(120).height(120))'});
   },
 
   getOpponentInfo : function (id, callback) {
@@ -117,10 +129,11 @@
   },
 
   hasPermission :function (permission) {
-    for( var i in friendCache.permissions ) {
+    var model = this;
+    for( var i in model.friendCache.permissions ) {
       if(
-        friendCache.permissions[i].permission == permission
-        && friendCache.permissions[i].status == 'granted' )
+        model.friendCache.permissions[i].permission == permission
+        && model.friendCache.permissions[i].status == 'granted' )
         return true;
     }
     return false;
@@ -145,18 +158,20 @@ login :  function (callback) {
   },
 
   onStatusChange :function (response) {
+    var model = this;
     if( response.status != 'connected' ) {
-      login(loginCallback);
+      this.login(loginCallback);
     } else {
-      getMe(function(){
-        getPermissions(function(){
-          if(hasPermission('user_friends')) {
-            getFriends(function(){           
-              urlHandler(window.location.search);
+      model.getMe(function(){
+        model.getPermissions(function(){
+          if(model.hasPermission('user_friends')) {
+            model.getFriends(function(){   
+            ui.drawfriends (model.friendCache.friends);  
+              //model.urlHandler(window.location.search);
             });
           } else {
 
-            urlHandler(window.location.search);
+          //  model.urlHandler(window.location.search);
           }
         });
       });
@@ -166,7 +181,7 @@ login :  function (callback) {
   onAuthResponseChange :function (response) {
     console.log('onAuthResponseChange', response);
     if( response.status == 'connected' ) {
-      getPermissions();
+      this.getPermissions();
     }
   },
 
@@ -181,11 +196,6 @@ login :  function (callback) {
       if(callback) callback(response);
     });
   },
-
-
-
-
-
   sendScore :function (score, callback) {
     // Check current score, post new one only if it's higher
     FB.api('/me/scores', function(response) {
@@ -226,8 +236,8 @@ login :  function (callback) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   },
 
-    return social;
+   
   }
-
+ return social;
 
   });

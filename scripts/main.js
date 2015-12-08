@@ -1,8 +1,10 @@
 // define la url del juego inicio
 require ([
 	'jquery',
-	'social'
-	], function ($,social){
+	'social',
+	'ui'
+
+	], function ($,social,ui){
 
 		
 		var url="https://"+ juego +".patagoniaentertainment.com/game.do?type=FREE&pn=free&lang="
@@ -21,10 +23,53 @@ require ([
 
 			FB.Canvas.setDoneLoading();
 			FB.Canvas.setUrlHandler( urlHandler );
+			//social.onAuthResponseChange ();
+			FB.Event.subscribe('auth.authResponseChange', authorization_change);
+			FB.Event.subscribe('auth.statusChange', status_change);
+			 $("#closebtn").click(function(event) {
+        		closeNews ();
+   			 });
+   			  $("#newsletteres").click(function(event) {
+        		newsletter('es');
+   			 });
+   			  $("#newsletteren").click(function(event) {
+        		newsletter('en');
+   			 });
+   			  $("#newsletterbr").click(function(event) {
+        		newsletter('br');
+   			 });
+   			  $("#juego1").click(function(event) {
+        		golobby('shb');
+   			 });
+   			  $("#juego2").click(function(event) {
+        		golobby('zb');
+   			 });
+   			  $("#juego3").click(function(event) {
+        		golobby('pb');
+   			 });
+   			  $("#juego4").click(function(event) {
+        		golobby('sbp');
+   			 });
+   			  $("#juego5").click(function(event) {
+        		golobby('farm');
+   			 });
+   			 $("#juego6").click(function(event) {
+        		golobby('gb');
+   			 });
 
-			FB.Event.subscribe('auth.authResponseChange', social.onAuthResponseChange ());
-			FB.Event.subscribe('auth.statusChange', social.onStatusChange ());
 
+   			  $("#idioma1").click(function(event) {
+        		Cambiaridioma('es');
+   			 });
+   			   $("#idioma2").click(function(event) {
+        		Cambiaridioma('en');
+   			 });
+   			    $("#idioma3").click(function(event) {
+        		Cambiaridioma('br');
+   			 });
+   			  $("#lobby").click(function(event) {
+        		golobby('lobby');
+   			 });
 
 			$('body').css('background-image', "url(Images/background/"+ juego +".jpg)");
 			$('#iframe').attr('src',url + idioma);
@@ -33,6 +78,31 @@ require ([
 				newsletter(idioma);
 			},150000);
 		});
+		function authorization_change (response) 
+		{
+			social.onAuthResponseChange (response);		
+
+		}
+		function status_change (response) {
+
+			social.onStatusChange (response);
+
+		}
+
+		function golobby(param){
+				$('body').css('background-image', "url(Images/background/"+ param +".jpg)");
+				if (param == "lobby"){
+					$('#iframe').attr('src','PHP/lobby.php');
+					$('#iframe').removeClass().addClass('hide');
+					$('#lobby-layer').removeClass().addClass('visible');
+				} else{
+					url="https://"+ param +".patagoniaentertainment.com/game.do?type=FREE&pn=free&lang=";
+					juego = param
+					$('#iframe').removeClass().addClass('iframe visible');
+					$('#iframe').attr('src',url+idioma);
+					$('#lobby-layer').removeClass().addClass('hide');
+				}
+			}
 // define la url del juego final
 function urlHandler(data) {
   // Called from either setUrlHandler or using window.location on load, so normalise the path
@@ -185,19 +255,6 @@ function Cambiaridioma(cual) {
 				$('#layer-newsletter').removeClass().addClass('hide');
 			}
 
-			function golobby(param){
-				$('body').css('background-image', "url(../imgs/background/"+ param +".jpg)");
-				if (param == "lobby"){
-					$('#iframe').attr('src','../lobby.php');
-					$('#iframe').removeClass().addClass('hide');
-					$('#lobby-layer').removeClass().addClass('visible');
-				} else{
-					url="https://"+ param +".patagoniaentertainment.com/game.do?type=FREE&pn=free&lang=";
-					juego = param
-					$('#iframe').removeClass().addClass('iframe visible');
-					$('#iframe').attr('src',url+idioma);
-					$('#lobby-layer').removeClass().addClass('hide');
-				}
-			}
+			
 		
 		});
