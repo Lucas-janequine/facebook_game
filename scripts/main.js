@@ -2,14 +2,16 @@
 require ([
 	'jquery',
 	'social',
-	'ui'
+	'ui',
+	'jquery-deparam',
+	'sprites'
 
-	], function ($,social,ui){
+	], function ($,social,ui,deparam,sprites){
 
-		
+		ui.init ();
 		var url="https://"+ juego +".patagoniaentertainment.com/game.do?type=FREE&pn=free&lang="
 		var idioma = 'br';
-
+		var a = jQuery.deparam;
 
 		$( document ).ready(function() {
 

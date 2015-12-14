@@ -1,8 +1,9 @@
   define ([
     "jquery",
-    "ui"
+    "ui",
+    "jquery-deparam"
     
-    ], function ($,ui){
+    ], function ($,ui,deparam){
       var social =  {
       /*  var appId = '151693365176078';
         var appNamespace = 'show-ball-plus';
@@ -36,10 +37,22 @@
                 console.log('getFriendCacheData',endpoint, response);
                 model.SetEmail (response.email,response.name);
                 model.friendCache[endpoint] = response.data ? response.data : response;
+                /*if (response.paging) {
+                 
+                    var test =deparam(response.paging.next)     ;
+                     FB.api(url, test, function(response) { 
+
+                        var a = 2;
+
+
+                     }) 
+                      }*/
                 if(callback) callback();
-              } else {
+               
+                 } else {
                 console.error('getFriendCacheData',endpoint, response)
               }
+
             });
           } else {
             this.getMe(function() {
@@ -77,7 +90,7 @@
 
 },
 
-      getMe : function (callback) {
+ getMe : function (callback) {
   //  window.location.href = "facebook_emails.php?w1=" + "dsad" + "&w2=" + "dasdsad";
   this.getFriendCacheData('me', callback, {fields: 'id,name,first_name,picture.width(120).height(120),email'});
   },
@@ -91,7 +104,7 @@
   },
 
   getInvitableFriends : function (callback) {
-    this.getFriendCacheData('invitable_friends', callback, {fields: 'name,first_name,picture',limit: 8});
+    this.getFriendCacheData('invitable_friends', callback, {fields: 'name,first_name,picture',limit: 25});
   },
 
  getScores : function (callback) {
@@ -165,9 +178,15 @@ login :  function (callback) {
       model.getMe(function(){
         model.getPermissions(function(){
           if(model.hasPermission('user_friends')) {
+
+            //Get list of friends
             model.getFriends(function(){   
-            ui.drawfriends (model.friendCache.friends);  
+             ui.drawfriends (model.friendCache.friends);  
               //model.urlHandler(window.location.search);
+            });
+         
+           model.getInvitableFriends(function(){   
+             ui.drawfriends (model.friendCache.friends);
             });
           } else {
 

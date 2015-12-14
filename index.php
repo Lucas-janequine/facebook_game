@@ -14,6 +14,7 @@ include("PHP/analytics.php");
 
 <!-- We will get our jQuery from google -->
 <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+
 <script type="text/javascript">
 	google.load('jquery', '1.4.1');
 </script>
