@@ -17,30 +17,33 @@ define ([
 			var model = this;
 			var tempid = 0;
 			var remaining = model.maxperpage - friends.length ;
+
+			$( "body" ).append( "<div id='friend_container'></div>" );
 			//Show a page of friend that plays the game
 			for (var i = 0; i < friends.length; i++) {
 				friends[i].first_name;
 				friends[i].id;
 				friends[i].name;
 				tempid++;
-				$( "body" ).append( "<div id='friend" + tempid.toString() +"'"+ "></div>" );
+				$( "#friend_container" ).append( "<div class='fb_friend ff" + tempid.toString() + "'> <div id='friend" + tempid.toString() + "'></div></div>" );
 				$("#friend"+ tempid.toString ()).css({
 					"background"		: "url('"+ friends[i].picture.data.url +"') no-repeat",
 					"background-size"	: "contain",
-					"height"			: friends[i].picture.data.height,
-					"width"				: friends[i].picture.data.width
-
+					 "height"			: sprites.invite_friends_icon.height,
+					 "width"			: sprites.invite_friends_icon.width
 				});
+				$( ".ff"+ tempid.toString() ).append( friends[i].first_name.toString() );
 			};
 			//If there are no friends left, invite them! 
 			for (var i = 0; i < remaining; i++) {
 				tempid++;
-				$( "body" ).append( "<div id='friend"  + tempid.toString () + "'" + "></div>" );
+				$( "#friend_container" ).append( "<div class='fb_friend invite' id='friend"  + tempid.toString () + "'" + "></div>" );
 				$("#friend" + tempid.toString ()).css({
 					"background"		: "url('"+ "Images/" + sprites.invite_friends_icon.url +"') no-repeat",
 					"background-size"	: "contain",
-					"height"			: sprites.invite_friends_icon.height,
-					"width"				: sprites.invite_friends_icon.width
+					
+					 "height"			: sprites.invite_friends_icon.height,
+					 "width"			: sprites.invite_friends_icon.width
 
 				});
 

@@ -240,3 +240,25 @@ body{
 			    left: 476px;
 			}
 /*menu final*/
+
+/*friend container*/
+#friend_container{
+	width: 800px;
+	height: 110px;
+	overflow: hidden;
+	position: relative;
+	left: 50%;
+	margin-left: -400px;
+    background: rgba(0, 0, 0, 0.7);
+}
+#friend_container .fb_friend{
+	float: left;
+	text-align: center;
+	font-size: 12px;
+	color: #fff;
+	margin: 5px;
+}
+
+#friend_container .invite{
+	cursor: pointer;
+}
