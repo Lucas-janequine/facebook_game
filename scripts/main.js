@@ -70,7 +70,13 @@ require ([
         		Cambiaridioma('br');
    			 });
    			  $("#lobby").click(function(event) {
-        		golobby('lobby');
+   			  FB.ui({method: 'apprequests',
+  message: 'YOUR_MESSAGE_HERE'
+}, function(response){
+  console.log(response);
+});
+        		//golobby('lobby');
+
    			 });
 
 			$('body').css('background-image', "url(Images/background/"+ juego +".jpg)");

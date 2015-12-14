@@ -186,7 +186,9 @@ login :  function (callback) {
             });
          
            model.getInvitableFriends(function(){   
-             ui.drawfriends (model.friendCache.friends);
+            var a = model.invitable_friends; 
+            var aw = "dasd";
+             //ui.drawfriends (model.friendCache.friends);
             });
           } else {
 
