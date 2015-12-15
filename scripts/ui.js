@@ -22,15 +22,13 @@ define ([
 			//Show a page of friend that plays the game
 			for (var i = 0; i < friends.length; i++) {
 				friends[i].first_name;
-				friends[i].id;
-				friends[i].name;
 				tempid++;
 				$( "#friend_container" ).append( "<div class='fb_friend ff" + tempid.toString() + "'> <div id='friend" + tempid.toString() + "'></div></div>" );
 				$("#friend"+ tempid.toString ()).css({
 					"background"		: "url('"+ friends[i].picture.data.url +"') no-repeat",
 					"background-size"	: "contain",
-					 "height"			: sprites.invite_friends_icon.height,
-					 "width"			: sprites.invite_friends_icon.width
+					"height"			: sprites.invite_friends_icon.height,
+					"width"			: sprites.invite_friends_icon.width
 				});
 				$( ".ff"+ tempid.toString() ).append( friends[i].first_name.toString() );
 			};
@@ -42,9 +40,17 @@ define ([
 					"background"		: "url('"+ "Images/" + sprites.invite_friends_icon.url +"') no-repeat",
 					"background-size"	: "contain",
 					
-					 "height"			: sprites.invite_friends_icon.height,
-					 "width"			: sprites.invite_friends_icon.width
+					"height"			: sprites.invite_friends_icon.height,
+					"width"			: sprites.invite_friends_icon.width
 
+				});
+
+				$("#friend" + tempid.toString ()).click(function(event) {
+					FB.ui({method: 'apprequests',
+						message: 'YOUR_MESSAGE_HERE'
+					}, function(response){
+						console.log(response);
+					});
 				});
 
 

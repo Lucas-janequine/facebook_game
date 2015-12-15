@@ -70,11 +70,7 @@ require ([
         		Cambiaridioma('br');
    			 });
    			  $("#lobby").click(function(event) {
-   			  FB.ui({method: 'apprequests',
-  message: 'YOUR_MESSAGE_HERE'
-}, function(response){
-  console.log(response);
-});
+   			  	social.buyProduct ()
         		//golobby('lobby');
 
    			 });
